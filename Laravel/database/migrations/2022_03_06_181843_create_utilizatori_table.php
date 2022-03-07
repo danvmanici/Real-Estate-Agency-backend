@@ -19,6 +19,12 @@ class CreateUtilizatoriTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('role');
+            $table->boolean('rgarsoniera');
+            $table->boolean('rapartament');
+            $table->boolean('rcasa');
+            $table->boolean('cgarsoniera');
+            $table->boolean('capartament');
+            $table->boolean('ccasa');
         });
     }
 
