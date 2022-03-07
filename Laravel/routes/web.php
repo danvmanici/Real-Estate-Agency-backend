@@ -40,6 +40,9 @@ Route::get('/register/{email}/{password}', function ($email, $password) {
     $utilizator = Utilizator::where('email', '=', $email)->get();
     error_log($utilizator);
     if ($utilizator[0]['password'] == $password) {
-        return "ok";
+        $obj = new stdClass();
+        $obj->email = $utilizator[0]['email'];
+        $obj->name = $utilizator[0]['name'];
+        return $obj;
     }
 });
