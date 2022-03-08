@@ -88,10 +88,11 @@ Route::get('/appointment/{locuintaId}/{date}', function ($locuintaId, $date) {
 
     $appointmentsList = Appointment::where('locuintaId', '=', $locuintaId)->where('date', '=', $date)->get();
     error_log($appointmentsList);
-    // if (empty($appointmentsList)) {
-    //     $appointment->save();
-    //     return "appointment succeeds";
-    // }
-    // return "chose another date";
-    return "appointment succeeds";
+    if (sizeof($appointmentsList)==0) {
+        $appointment->save();
+        return "appointment succeeds";
+    }
+    return "chose another date";
+    // $appointment->save();
+    // return "appointment succeeds";
 });
