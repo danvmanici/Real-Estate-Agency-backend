@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Utilizator;
+use App\Models\Appointment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,4 +77,21 @@ Route::get('/register/{id}/{name}/{email}/{rgarsoniera}/{rapartament}/{rcasa}/{c
     // $utilizator->save();
     Utilizator::where('id', '=', $id)->update(['name' => $name, 'email' => $email, 'rgarsoniera' => $rgarsoniera, 'rapartament' => $rapartament, 'rcasa' => $rcasa, 'cgarsoniera' => $cgarsoniera, 'capartament' => $capartament, 'ccasa' => $ccasa]);
     return "ok";
+});
+
+Route::get('/appointment/{locuintaId}/{date}', function ($locuintaId, $date) {
+    error_log($date);
+    $appointment = new Appointment;
+    $appointment->locuintaId = $locuintaId;
+    $appointment->date = $date;
+    error_log($appointment);
+
+    $appointmentsList = Appointment::where('locuintaId', '=', $locuintaId)->where('date', '=', $date)->get();
+    error_log($appointmentsList);
+    // if (empty($appointmentsList)) {
+    //     $appointment->save();
+    //     return "appointment succeeds";
+    // }
+    // return "chose another date";
+    return "appointment succeeds";
 });
