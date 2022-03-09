@@ -51,6 +51,7 @@ Route::get('/register/{email}/{password}', function ($email, $password) {
         $obj->id = $utilizator[0]['id'];
         $obj->email = $utilizator[0]['email'];
         $obj->name = $utilizator[0]['name'];
+        $obj->role = $utilizator[0]['role'];
         $obj->rgarsoniera = $utilizator[0]['rgarsoniera'];
         $obj->rapartament = $utilizator[0]['rapartament'];
         $obj->rcasa = $utilizator[0]['rcasa'];
@@ -93,6 +94,12 @@ Route::get('/appointment/{locuintaId}/{date}', function ($locuintaId, $date) {
         return "appointment succeeds";
     }
     return "chose another date";
-    // $appointment->save();
-    // return "appointment succeeds";
+
+});
+
+Route::get('/app/{id}', function ($id) {
+    error_log($id);
+    $app = Appointment::where('locuintaId', '=', $id)->get();
+    error_log($app);
+    return $app;
 });
